@@ -5,7 +5,7 @@
  * Beer Licensed (meaning, if you like this module, feel free to have a beer on me, or send me one.)
  */
 
-Module.register("random_quotes",{
+Module.register("MMM-RandomQuotes", {
 
 	/* Quotes are courtesy of BrainyQuote.com
 	   There is no 'automated' way to fetch random quotes from BrainyQuote.com. You'll have to
@@ -97,14 +97,14 @@ Module.register("random_quotes",{
 
 
 	// Define start sequence.
-	start: function() {
+	start: function () {
 		Log.info("Starting module: " + this.name);
 
 		this.lastQuoteIndex = -1;
 
 		// Schedule update timer.
 		var self = this;
-		setInterval(function() {
+		setInterval(function () {
 			self.updateDom(self.config.fadeSpeed * 1000);
 		}, this.config.updateInterval * 1000);
 	},
@@ -116,12 +116,12 @@ Module.register("random_quotes",{
 	 *
 	 * return Number - Random index.
 	 */
-	randomIndex: function(quotes) {
+	randomIndex: function (quotes) {
 		if (quotes.length === 1) {
 			return 0;
 		}
 
-		var generate = function() {
+		var generate = function () {
 			return Math.floor(Math.random() * quotes.length);
 		};
 
@@ -141,7 +141,7 @@ Module.register("random_quotes",{
 	 *
 	 * return quotes Array<String> - Array with quotes for the time of the day.
 	 */
-	quoteArray: function() {
+	quoteArray: function () {
 		if (this.config.category == 'random') {
 			return this.config.quotes[Object.keys(this.config.quotes)[Math.floor(Math.random() * Object.keys(this.config.quotes).length)]];
 		} else {
@@ -154,14 +154,14 @@ Module.register("random_quotes",{
 	 *
 	 * return quote string - A quote.
 	 */
-	randomQuote: function() {
+	randomQuote: function () {
 		var quotes = this.quoteArray();
 		var index = this.randomIndex(quotes);
 		return quotes[index].split(" ~ ");
 	},
 
 	// Override dom generator.
-	getDom: function() {
+	getDom: function () {
 		var quoteText = this.randomQuote();
 
 		var qMsg = quoteText[0];
@@ -173,7 +173,7 @@ Module.register("random_quotes",{
 		quote.className = "bright medium light";
 		quote.style.textAlign = 'center';
 		quote.style.margin = '0 auto';
-		quote.style.maxWidth = '50%';
+		quote.style.maxWidth = '100%';
 		quote.innerHTML = qMsg;
 
 		wrapper.appendChild(quote);
