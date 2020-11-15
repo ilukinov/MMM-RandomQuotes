@@ -177,12 +177,14 @@ Module.register("MMM-RandomQuotes", {
 		quote.innerHTML = qMsg;
 
 		wrapper.appendChild(quote);
+		if (this.config.showAuthor) {
+			var author = document.createElement("div");
+			author.className = "light small dimmed";
+			author.innerHTML = "~ " + qAuthor;
 
-		var author = document.createElement("div");
-		author.className = "light small dimmed";
-		author.innerHTML = "~ " + qAuthor;
+			wrapper.appendChild(author);
+		}
 
-		wrapper.appendChild(author);
 
 		return wrapper;
 	}
